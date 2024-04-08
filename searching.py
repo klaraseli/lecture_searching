@@ -29,16 +29,32 @@ def linear_search(sekvence, hledane_cislo):
         if cislo == hledane_cislo:
             vyskyty = vyskyty + 1
             pozice.append(idx)
-    slovnik = {"pocet vyskytu" : vyskyty, "pozice vyskytu" : pozice}
+    slovnik = {"pocet vyskytu": vyskyty, "pozice vyskytu": pozice}
     return slovnik
 
+def pattern_search(sekvence, vzor):
+    delka = len(vzor)
+    if delka % 2 == 0:
+        stred = delka / 2
+    if delka % 2 == 1:
+        stred = int(delka / 2) + 1
+    delka_sekvence = len(sekvence)
+    pozice = []
+    for idx in range(delka_sekvence):
+        zkoumame = sekvence[idx:delka + idx]
+        if zkoumame == vzor:
+            pozice.append(idx + stred - 1)
+    return pozice
 
 def main():
-    sequential_data = read_data("sequential.json", "unordered_numbers")
+    sequential_data = read_data("sequential.json", "dna_sequence")
     print(sequential_data)
     cislo = 5
     slovnik = linear_search(sequential_data, cislo)
     print(slovnik)
+    vzor = "ATA"
+    sekvence = pattern_search(sequential_data, vzor)
+    print(sekvence)
 
 
 if __name__ == '__main__':
