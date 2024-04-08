@@ -42,6 +42,8 @@ def pattern_search(sekvence, vzor):
     pozice = []
     for idx in range(delka_sekvence):
         zkoumame = sekvence[idx:delka + idx]
+        if zkoumame[0] != vzor[0]:
+            continue
         if zkoumame == vzor:
             pozice.append(idx + stred - 1)
     return pozice
@@ -49,7 +51,7 @@ def pattern_search(sekvence, vzor):
 def main():
     sequential_data = read_data("sequential.json", "dna_sequence")
     print(sequential_data)
-    cislo = 5
+    cislo = "A"
     slovnik = linear_search(sequential_data, cislo)
     print(slovnik)
     vzor = "ATA"
