@@ -15,7 +15,12 @@ def read_data(file_name, field):
     file_path = os.path.join(cwd_path, file_name)
     with open(file_path, mode="r") as file:
         content = json.load(file)
-    return content
+        klice = content.keys()
+        for data in klice:
+            if data == field:
+                value = content[field]
+                return value
+        return None
 
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
