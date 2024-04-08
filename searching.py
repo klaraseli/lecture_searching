@@ -48,15 +48,32 @@ def pattern_search(sekvence, vzor):
             pozice.append(idx + stred - 1)
     return pozice
 
+def binary_search(seznam, hledane_cislo):
+    neco = False
+    soubor = seznam
+    while neco == False:
+        delka = len(soubor)
+        if delka % 2 == 0:
+            stred = delka / 2
+        elif delka % 2 == 1:
+            stred = int(delka / 2) + 1
+        if hledane_cislo == stred:
+            neco == True
+        elif hledane_cislo > stred:
+            soubor = soubor[stred:]
+        elif hledane_cislo < stred:
+            soubor = soubor[:stred]
+
+
 def main():
-    sequential_data = read_data("sequential.json", "dna_sequence")
+    sequential_data = read_data("sequential.json", "ordered_numbers")
     print(sequential_data)
-    cislo = "A"
-    slovnik = linear_search(sequential_data, cislo)
-    print(slovnik)
-    vzor = "ATA"
-    sekvence = pattern_search(sequential_data, vzor)
-    print(sekvence)
+    # cislo = "A"
+    # slovnik = linear_search(sequential_data, cislo)
+    # print(slovnik)
+    # vzor = "ATA"
+    # sekvence = pattern_search(sequential_data, vzor)
+    # print(sekvence)
 
 
 if __name__ == '__main__':
